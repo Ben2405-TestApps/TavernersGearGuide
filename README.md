@@ -1,7 +1,20 @@
 # Taverners Gear Guide
 
-Foundation release for WoW Forever. Provides class-aware qualitative stat priorities for common PvE, PvP, tanking and healing builds, reads equipped inventory items, and registers with TavernersCore.
+Class-aware gearing reference for WoW Forever.
 
-Install TavernersCore, place this folder in Interface/AddOns/TavernersGearGuide, enable both addons, then use /tgear or /tgg.
+## Features
+- Class/spec profile selector with PvP, PvE, tank, healer and melee/ranged starting priorities.
+- Reads currently equipped gear.
+- Includes a sourced Beast Mastery Hunter Phase 1 pre-raid item reference, including item slots, acquisition sources, alternatives and ranged weapon distinctions.
+- Displays Wowhead's 8% hit reference for raid-boss gearing; this is not a universal PvP target.
+- Registers with TavernersCore for the Guild Hall dashboard.
 
-Stat priorities are starting points, not universal numeric weights. They vary with level, gear, talents, target level and PvP/PvE context. Verified item-by-item gear sets and drop sources will be added as curated data packs. Interface target 16001; live-client testing required.
+Install TavernersCore, then place this folder in `Interface/AddOns/TavernersGearGuide`. Use `/tgear` or `/tgg`.
+
+## Data source
+- [Wowhead Forever — Beast Mastery Hunter Phase 1 Pre-Raid BiS](https://www.wowhead.com/forever/guide/classes/hunter/beast-mastery/bis-gear)
+- [Wowhead Forever Gear Planner](https://www.wowhead.com/forever/gear-planner)
+
+The BM list is a PvE pre-raid reference, not a dedicated PvP set. Wowhead notes the guide is evolving and distinguishes AoE from single-target ranged weapons. Other class profiles currently provide qualitative priorities and Wowhead planner links; item-by-item class lists will be added as verified data packs.
+
+Interface target 16001. Live-client API testing is still required.
