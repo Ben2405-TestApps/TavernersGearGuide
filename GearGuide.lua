@@ -6,7 +6,7 @@ local DB=Core.Database:Register("TavernersGearGuideDB",{version=2,profileIndex=1
 local Profiles={
  WARRIOR={{"Arms PvP","Melee / PvP","Weapon damage > Strength > Stamina > Critical Strike"},{"Fury PvE","Melee / PvE","Weapon skill where relevant > Hit > Strength > Critical Strike"},{"Protection","Tank","Stamina > Defense > Armor > Strength > Hit"}},
  PALADIN={{"Holy","Healer","Healing power > Intellect > Mana per 5 > Spirit > Stamina"},{"Retribution","Melee / PvP","Weapon damage > Strength > Stamina > Critical Strike"},{"Protection","Tank","Stamina > Defense > Armor > Spell power / threat"}},
- HUNTER={{"Beast Mastery PvP","Ranged / PvP","Agility > Hit (8% PvE boss cap reference) > Critical Strike > Attack Power > Stamina"},{"Beast Mastery PvE","Ranged / PvE","Agility > Hit to 8% > Critical Strike > Attack Power"},{"Marksmanship","Ranged","Ranged weapon DPS > Agility > Hit > Critical Strike > Attack Power"},{"Survival","Ranged / Weaving","Agility > Hit > Critical Strike > Attack Power"}},
+ HUNTER={{"Beast Mastery PvP","Ranged / PvP","Agility / Critical Strike for pressure; Stamina and pet durability for survival. The 8% hit figure is a PvE boss benchmark, not a PvP target."},{"Beast Mastery PvE","Ranged / PvE","Agility > Hit to 8% > Critical Strike > Attack Power"},{"Marksmanship","Ranged","Ranged weapon DPS > Agility > Hit > Critical Strike > Attack Power"},{"Survival","Ranged / Weaving","Agility > Hit > Critical Strike > Attack Power"}},
  ROGUE={{"Combat","Melee / PvE","Weapon skill where relevant > Hit > Agility > Attack Power"},{"Subtlety PvP","Melee / PvP","Weapon damage > Agility > Stamina > Attack Power > Critical Strike"},{"Assassination","Melee","Agility > Attack Power > Hit > Critical Strike"}},
  PRIEST={{"Holy / Discipline","Healer","Healing power > Intellect > Mana per 5 > Spirit > Stamina"},{"Shadow PvP","Caster / PvP","Spell damage > Stamina > Shadow damage > Intellect"}},
  MAGE={{"Frost PvP","Caster / PvP","Spell damage > Stamina > Intellect > Spell Critical Strike"},{"Fire PvE","Caster / PvE","Spell hit > Fire spell damage > Spell Critical Strike > Intellect"},{"Arcane","Caster","Spell damage > Spell hit > Intellect > Spell Critical Strike"}},
@@ -32,10 +32,15 @@ local function refresh()
  if p then add("PROFILE "..DB.profileIndex.."/"..total.." • "..p[1].." • "..p[2],"GameFontNormal"); add("STAT PRIORITY","GameFontNormal"); add(p[3]) end
  if class=="HUNTER" and Data.hunterBM then
   add("BEAST MASTERY HUNTER — PHASE 1 PRE-RAID","GameFontNormal"); add("Wowhead updated "..Data.hunterBM.updated..". "..Data.hunterBM.note)
+  add(Data.hunterBM.pvpNote or "PvP priorities differ from PvE stat weights.")
+  add("PET SCALING IN FOREVER","GameFontNormal")
+  for _,v in ipairs(Data.hunterBM.petScaling or {}) do add(v) end
   add("ITEM REFERENCE","GameFontNormal")
   for _,item in ipairs(Data.hunterBM.items or {}) do add(item.slot.." — "..item.name.." ["..item.rank.."]","GameFontHighlight"); add("Source: "..item.source,"GameFontHighlightSmall") end
   add("RANGED WEAPONS","GameFontNormal")
   for _,item in ipairs(Data.hunterBM.ranged or {}) do add(item.rank..": "..item.name.." — "..item.source) end
+  add("PVE ENCHANT REFERENCE","GameFontNormal")
+  for _,v in ipairs(Data.hunterBM.enchants or {}) do add(v.slot..": "..v.name) end
   add("Wowhead gear planner: "..tostring(Data.links and Data.links.HUNTER or "not indexed"))
  end
  add("EQUIPPED GEAR","GameFontNormal"); local gear=G:Equipped(); for _,item in ipairs(gear) do add(item) end
