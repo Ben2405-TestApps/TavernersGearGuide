@@ -57,7 +57,7 @@ ns.GearData = {
       title="Beast Mastery Hunter — Pre-Raid PvP (Horde)",
       source="https://www.skill-capped.com/wowarticles/forever/guides/beast-mastery-hunter-pvp-guide/gearing/",
       updated="2026-11-19",
-      note="Work in progress: the source explicitly labels these sets as predictions, not in-game tested. Trinket recommendations are not yet published. The set prioritises survivability while keeping useful ranged pressure.",
+      note="Work in progress: the source explicitly labels these sets as predictions, not in-game tested. The guide offers situational damage, survival, control and utility trinkets rather than one fixed pair. The set prioritises survivability while keeping useful ranged pressure.",
       summary="Default set: 194 Stamina / 479 Attack Power / 4.9% Hit / 4.6% Crit. Seven blue PvP armour pieces: 53,200 Honor, 35 WSG marks, 25 AB marks, 15 AV marks and 10 Darkspear Islands marks.",
       items={
         {slot="Head",rank="PvP set",name="Premier Chain Headguard",source="Horde PvP vendor — 9,000 Honor + 15 Alterac Valley marks"},
