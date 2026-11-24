@@ -47,6 +47,13 @@ local function refresh()
    add(item.slot.." — "..item.name.." ["..item.rank.."]","GameFontHighlight")
    add("Source: "..item.source,"GameFontHighlightSmall")
   end
+  if gearProfile.extras and #gearProfile.extras>0 then
+   add("SITUATIONAL TRINKETS & UTILITY","GameFontNormal")
+   for _,item in ipairs(gearProfile.extras) do
+    add(item.category..": "..item.name,"GameFontHighlight")
+    add("Source: "..item.source,"GameFontHighlightSmall")
+   end
+  end
   if gearProfile.enchants and #gearProfile.enchants>0 then
    add("RECOMMENDED ENCHANTS","GameFontNormal")
    for _,v in ipairs(gearProfile.enchants) do add(v.slot..": "..v.name) end
