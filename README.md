@@ -15,6 +15,23 @@ Class-aware gearing reference for WoW Forever.
 Install TavernersCore, then place this folder in `Interface/AddOns/TavernersGearGuide`. Use `/tgear` or `/tgg`.
 
 ## Item-by-item set sources
+- [Retribution Paladin](https://www.wowhead.com/forever/guide/classes/paladin/retribution/bis-gear)
+- [Fury Warrior](https://www.wowhead.com/forever/guide/classes/warrior/fury/bis-gear)
+- [Protection Warrior](https://www.wowhead.com/forever/guide/classes/warrior/protection/bis-gear)
+- [Marksmanship Hunter](https://www.wowhead.com/forever/guide/classes/hunter/marksmanship/bis-gear)
+- [Survival Hunter](https://www.wowhead.com/forever/guide/classes/hunter/survival/bis-gear)
+- [Subtlety Rogue](https://www.wowhead.com/forever/guide/classes/rogue/subtlety/bis-gear)
+- [Assassination Rogue](https://www.wowhead.com/forever/guide/classes/rogue/assassination/bis-gear)
+- [Fire Mage](https://www.wowhead.com/forever/guide/classes/mage/fire/bis-gear)
+- [Frost Mage](https://www.wowhead.com/forever/guide/classes/mage/frost/bis-gear)
+- [Balance Druid](https://www.wowhead.com/forever/guide/classes/druid/balance/bis-gear)
+- [Feral Bear Tank Druid](https://www.wowhead.com/forever/guide/classes/druid/feral/bis-gear-tank)
+- [Restoration Druid](https://www.wowhead.com/forever/guide/classes/druid/restoration/bis-gear)
+- [Enhancement Shaman](https://www.wowhead.com/forever/guide/classes/shaman/enhancement/bis-gear)
+- [Restoration Shaman](https://www.wowhead.com/forever/guide/classes/shaman/restoration/bis-gear)
+- [Discipline Priest](https://www.wowhead.com/forever/guide/classes/priest/discipline/bis-gear)
+- [Demonology Warlock](https://www.wowhead.com/forever/guide/classes/warlock/demonology/bis-gear)
+- [Destruction Warlock](https://www.wowhead.com/forever/guide/classes/warlock/destruction/bis-gear)
 - [BM Hunter pre-raid PvP gear (Skill Capped)](https://www.skill-capped.com/wowarticles/forever/guides/beast-mastery-hunter-pvp-guide/gearing/)
 - [Arms Warrior Phase 1 BiS](https://www.wowhead.com/forever/guide/classes/warrior/arms/bis-gear)
 - [Combat Rogue Phase 1 BiS](https://www.wowhead.com/forever/guide/classes/rogue/combat/bis-gear)
