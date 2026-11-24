@@ -5,14 +5,14 @@ local Data=ns and ns.GearData or {}
 local DB=Core.Database:Register("TavernersGearGuideDB",{version=2,profileIndex=1},2)
 local Profiles={
  WARRIOR={{"Arms PvP","Melee / PvP","Weapon damage > Strength > Stamina > Critical Strike"},{"Fury PvE","Melee / PvE","Weapon skill where relevant > Hit > Strength > Critical Strike"},{"Protection","Tank","Stamina > Defense > Armor > Strength > Hit"}},
- PALADIN={{"Holy","Healer","Healing power > Intellect > Mana per 5 > Spirit > Stamina"},{"Retribution","Melee / PvP","Weapon damage > Strength > Stamina > Critical Strike"},{"Protection","Tank","Stamina > Defense > Armor > Spell power / threat"}},
+ PALADIN={{"Holy","Healer","Healing power > Intellect > Mana per 5 > Spirit > Stamina"},{"Retribution","Melee / PvP","Weapon damage > Hit to melee cap (about 8%, weapon-skill dependent) > Expertise > Strength > Critical Strike; PvP adds Stamina and control"},{"Protection","Tank","Stamina > Defense > Armor > Spell power / threat"}},
  HUNTER={{"Beast Mastery PvP","Ranged / PvP","Agility / Critical Strike for pressure; Stamina and pet durability for survival. The 8% hit figure is a PvE boss benchmark, not a PvP target."},{"Beast Mastery PvE","Ranged / PvE","Hit to 8% > Critical Strike > Haste > Agility > Intellect > Ranged Attack Power"},{"Marksmanship","Ranged","Ranged weapon DPS > Agility > Hit > Critical Strike > Attack Power"},{"Survival","Ranged / Weaving","Agility > Hit > Critical Strike > Attack Power"}},
  ROGUE={{"Combat","Melee / PvE","Weapon skill where relevant > Hit > Agility > Attack Power"},{"Subtlety PvP","Melee / PvP","Weapon damage > Agility > Stamina > Attack Power > Critical Strike"},{"Assassination","Melee","Agility > Attack Power > Hit > Critical Strike"}},
- PRIEST={{"Holy / Discipline","Healer","Healing power > Intellect > Mana per 5 > Spirit > Stamina"},{"Shadow PvP","Caster / PvP","Spell damage > Stamina > Shadow damage > Intellect"}},
+ PRIEST={{"Holy / Discipline","Healer","Healing Power > Intellect > Mana per 5 > Spirit > Spell Critical Strike > Stamina (Holy level-60 order remains provisional)"},{"Shadow PvP","Caster / PvP","Spell damage > Stamina > Shadow damage > Intellect"}},
  MAGE={{"Frost PvP","Caster / PvP","Spell damage > Stamina > Intellect > Spell Critical Strike"},{"Fire PvE","Caster / PvE","Spell hit > Fire spell damage > Spell Critical Strike > Intellect"},{"Arcane","Caster","Spell damage > Spell hit > Intellect > Spell Critical Strike"}},
- WARLOCK={{"Affliction","Caster","Spell damage > Spell hit > Stamina > Intellect"},{"Demonology PvP","Caster / PvP","Stamina > Spell damage > Intellect > Shadow damage"},{"Destruction","Caster","Spell hit > Spell damage > Spell Critical Strike > Intellect"}},
+ WARLOCK={{"Affliction","Caster","Spell Power / Shadow Damage > Critical Strike > Hit (up to 12% from gear with 5/5 Suppression) > Haste > Spell Piercing > Intellect > Spirit"},{"Demonology PvP","Caster / PvP","Stamina > Spell damage > Intellect > Shadow damage"},{"Destruction","Caster","Spell hit > Spell damage > Spell Critical Strike > Intellect"}},
  DRUID={{"Feral Tank","Tank","Armor > Stamina > Agility > Defense / avoidance > Strength"},{"Feral DPS","Melee","Agility > Strength > Attack Power > Critical Strike"},{"Restoration","Healer","Healing power > Mana per 5 > Intellect > Spirit"},{"Balance","Caster","Spell damage > Spell hit > Intellect > Spell Critical Strike"}},
- SHAMAN={{"Elemental","Caster","Spell damage > Spell hit > Intellect > Spell Critical Strike"},{"Enhancement","Melee","Weapon damage > Agility > Strength > Hit > Critical Strike"},{"Restoration","Healer","Healing power > Mana per 5 > Intellect > Spirit"}}
+ SHAMAN={{"Elemental","Caster","Haste / Cast Speed > Hit to 17% > Critical Strike > Spell Piercing > Spell Damage > Nature / Fire Damage > Intellect > Spirit"},{"Enhancement","Melee","Weapon damage > Agility > Strength > Hit > Critical Strike"},{"Restoration","Healer","Healing power > Mana per 5 > Intellect > Spirit"}}
 }
 local G={db=DB,data=Data}
 function G:Class() local _,c=UnitClass("player"); return c or "WARRIOR" end
@@ -30,6 +30,11 @@ local function refresh()
  local p,total=G:Profile(); local _,class=UnitClass("player")
  add((UnitName("player") or "Character").." • "..(class or "Unknown").." • Level "..UnitLevel("player"),"GameFontNormal")
  if p then add("PROFILE "..DB.profileIndex.."/"..total.." • "..p[1].." • "..p[2],"GameFontNormal"); add("STAT PRIORITY","GameFontNormal"); add(p[3]) end
+ if Data.classGuideSources and Data.classGuideSources[class] then
+  add("WOWHEAD FOREVER CLASS GUIDE","GameFontNormal")
+  add(Data.classGuideSources[class])
+ end
+ if Data.dataStatus then add(Data.dataStatus,"GameFontHighlightSmall") end
  if class=="HUNTER" and Data.hunterBM then
   add("BEAST MASTERY HUNTER — PHASE 1 PRE-RAID","GameFontNormal"); add("Wowhead updated "..Data.hunterBM.updated..". "..Data.hunterBM.note)
   add(Data.hunterBM.pvpNote or "PvP priorities differ from PvE stat weights.")
