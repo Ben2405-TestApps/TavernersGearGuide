@@ -87,10 +87,13 @@ local function refresh()
   if gearProfile.partial then add("COVERAGE: PARTIAL — see the linked source for unlisted slots and latest updates.","GameFontHighlightSmall") end
   if gearProfile.summary then add(gearProfile.summary,"GameFontHighlight") end
   add("SLOT-BY-SLOT RECOMMENDATIONS","GameFontNormal")
+  local listedItems=0
   for _,item in ipairs(gearProfile.items or {}) do
+   listedItems=listedItems+1
    add(item.slot.." — "..item.name.." ["..item.rank.."]","GameFontHighlight")
    add("Source: "..item.source,"GameFontHighlightSmall")
   end
+  if listedItems==0 then add("No verified slot-by-slot item list is published in this profile yet.","GameFontHighlightSmall") end
   if gearProfile.extras and #gearProfile.extras>0 then
    add("SITUATIONAL TRINKETS & UTILITY","GameFontNormal")
    for _,item in ipairs(gearProfile.extras) do
@@ -117,6 +120,7 @@ local function refresh()
   for _,item in ipairs(Data.hunterBM.items or {}) do add(item.slot.." — "..item.name.." ["..item.rank.."]","GameFontHighlight"); add("Source: "..item.source,"GameFontHighlightSmall") end
   add("RANGED WEAPONS","GameFontNormal")
   for _,item in ipairs(Data.hunterBM.ranged or {}) do add(item.rank..": "..item.name.." — "..item.source) end
+  addUpgradeCheck(add,Data.hunterBM)
   add("PVE ENCHANT REFERENCE","GameFontNormal")
   for _,v in ipairs(Data.hunterBM.enchants or {}) do add(v.slot..": "..v.name) end
  elseif p then
