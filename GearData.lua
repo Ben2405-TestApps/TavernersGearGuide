@@ -116,14 +116,14 @@ ns.GearData = {
     },
     ["PALADIN|Holy"] = {
       title="Holy Paladin — Healer Gear Guidance",
-      source="https://www.wowhead.com/forever/guide/classes/paladin/holy/stat-priority-pve-healer",
+      source="No verified Forever item-by-item source confirmed",
       updated="2026-11-24", partial=true,
       note="Stat-priority reference only. A verified Forever Phase 1 Holy Paladin item-by-item list has not yet been added; do not use Retribution gear as a healer set.",
       items={},
     },
     ["PALADIN|Protection"] = {
       title="Protection Paladin — Tank Gear Guidance",
-      source="https://www.wowhead.com/forever/guide/classes/paladin/protection/stat-priority-pve-tank",
+      source="No verified Forever item-by-item source confirmed",
       updated="2026-11-24", partial=true,
       note="Stat-priority reference only. A verified Forever Phase 1 Protection Paladin item-by-item list has not yet been added; choose defensive and threat pieces for your encounter rather than copying Retribution gear.",
       items={},
