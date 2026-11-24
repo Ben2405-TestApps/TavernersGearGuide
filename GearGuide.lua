@@ -4,11 +4,11 @@ if not Core then return end
 local Data=ns and ns.GearData or {}
 local DB=Core.Database:Register("TavernersGearGuideDB",{version=2,profileIndex=1},2)
 local Profiles={
- WARRIOR={{"Arms PvP","Melee / PvP","Weapon damage > Strength > Stamina > Critical Strike"},{"Fury PvE","Melee / PvE","Weapon skill where relevant > Hit > Strength > Critical Strike"},{"Protection","Tank","Stamina > Defense > Armor > Strength > Hit"}},
+ WARRIOR={{"Arms PvP","Melee / PvP","Weapon damage > Strength > Stamina > Critical Strike"},{"Fury PvE","Melee / PvE","Weapon skill where relevant > Hit > Strength > Critical Strike"},{"Protection","Tank","Stamina > Defense > Armor > Strength > Hit"},{"Arms PvE Phase 1","Melee / PvE","Hit / weapon skill > Strength > Critical Strike; use encounter-specific effects where relevant"}},
  PALADIN={{"Holy","Healer","Healing power > Intellect > Mana per 5 > Spirit > Stamina"},{"Retribution","Melee / PvP","Weapon damage > Hit to melee cap (about 8%, weapon-skill dependent) > Expertise > Strength > Critical Strike; PvP adds Stamina and control"},{"Protection","Tank","Stamina > Defense > Armor > Spell power / threat"}},
  HUNTER={{"Beast Mastery PvP","Ranged / PvP","Agility / Critical Strike for pressure; Stamina and pet durability for survival. The 8% hit figure is a PvE boss benchmark, not a PvP target."},{"Beast Mastery PvE","Ranged / PvE","Hit to 8% > Critical Strike > Haste > Agility > Intellect > Ranged Attack Power"},{"Marksmanship","Ranged","Ranged weapon DPS > Agility > Hit > Critical Strike > Attack Power"},{"Survival","Ranged / Weaving","Agility > Hit > Critical Strike > Attack Power"}},
  ROGUE={{"Combat","Melee / PvE","Weapon skill where relevant > Hit > Agility > Attack Power"},{"Subtlety PvP","Melee / PvP","Weapon damage > Agility > Stamina > Attack Power > Critical Strike"},{"Assassination","Melee","Agility > Attack Power > Hit > Critical Strike"}},
- PRIEST={{"Holy / Discipline","Healer","Healing Power > Intellect > Mana per 5 > Spirit > Spell Critical Strike > Stamina (Holy level-60 order remains provisional)"},{"Shadow PvP","Caster / PvP","Spell damage > Stamina > Shadow damage > Intellect"}},
+ PRIEST={{"Holy / Discipline","Healer","Healing Power > Intellect > Mana per 5 > Spirit > Spell Critical Strike > Stamina (Holy level-60 order remains provisional)"},{"Shadow PvP","Caster / PvP","Spell damage > Stamina > Shadow damage > Intellect"},{"Shadow PvE Phase 1","Caster / PvE","Spell Power / Shadow Damage > Hit (17% is aspirational) > Critical Strike > Intellect > Spirit / MP5"}},
  MAGE={{"Frost PvP","Caster / PvP","Spell damage > Stamina > Intellect > Spell Critical Strike"},{"Fire PvE","Caster / PvE","Spell hit > Fire spell damage > Spell Critical Strike > Intellect"},{"Arcane","Caster","Spell damage > Spell hit > Intellect > Spell Critical Strike"}},
  WARLOCK={{"Affliction","Caster","Spell Power / Shadow Damage > Critical Strike > Hit (up to 12% from gear with 5/5 Suppression) > Haste > Spell Piercing > Intellect > Spirit"},{"Demonology PvP","Caster / PvP","Stamina > Spell damage > Intellect > Shadow damage"},{"Destruction","Caster","Spell hit > Spell damage > Spell Critical Strike > Intellect"}},
  DRUID={{"Feral Tank","Tank","Armor > Stamina > Agility > Defense / avoidance > Strength"},{"Feral DPS","Melee","Agility > Strength > Attack Power > Critical Strike"},{"Restoration","Healer","Healing power > Mana per 5 > Intellect > Spirit"},{"Balance","Caster","Spell damage > Spell hit > Intellect > Spell Critical Strike"}},
@@ -35,8 +35,29 @@ local function refresh()
   add(Data.classGuideSources[class])
  end
  if Data.dataStatus then add(Data.dataStatus,"GameFontHighlightSmall") end
- if class=="HUNTER" and Data.hunterBM then
-  add("BEAST MASTERY HUNTER — PHASE 1 PRE-RAID","GameFontNormal"); add("Wowhead updated "..Data.hunterBM.updated..". "..Data.hunterBM.note)
+ local profileKey=class.."|"..(p and p[1] or "")
+ local gearProfile=Data.gearProfiles and Data.gearProfiles[profileKey]
+ if gearProfile then
+  add(gearProfile.title or "ITEM-BY-ITEM GEAR REFERENCE","GameFontNormal")
+  add("Source updated: "..tostring(gearProfile.updated or "not dated").." • "..tostring(gearProfile.source or "source not recorded"),"GameFontHighlightSmall")
+  if gearProfile.note then add(gearProfile.note) end
+  if gearProfile.summary then add(gearProfile.summary,"GameFontHighlight") end
+  add("SLOT-BY-SLOT RECOMMENDATIONS","GameFontNormal")
+  for _,item in ipairs(gearProfile.items or {}) do
+   add(item.slot.." — "..item.name.." ["..item.rank.."]","GameFontHighlight")
+   add("Source: "..item.source,"GameFontHighlightSmall")
+  end
+  if gearProfile.enchants and #gearProfile.enchants>0 then
+   add("RECOMMENDED ENCHANTS","GameFontNormal")
+   for _,v in ipairs(gearProfile.enchants) do add(v.slot..": "..v.name) end
+  end
+  if class=="HUNTER" and Data.hunterBM then
+   add("PET SCALING IN FOREVER","GameFontNormal")
+   for _,v in ipairs(Data.hunterBM.petScaling or {}) do add(v) end
+  end
+ elseif class=="HUNTER" and p and p[1]=="Beast Mastery PvE" and Data.hunterBM then
+  add("BEAST MASTERY HUNTER — PHASE 1 PRE-RAID PVE","GameFontNormal")
+  add("Wowhead updated "..Data.hunterBM.updated..". "..Data.hunterBM.note)
   add(Data.hunterBM.pvpNote or "PvP priorities differ from PvE stat weights.")
   add("PET SCALING IN FOREVER","GameFontNormal")
   for _,v in ipairs(Data.hunterBM.petScaling or {}) do add(v) end
@@ -46,7 +67,8 @@ local function refresh()
   for _,item in ipairs(Data.hunterBM.ranged or {}) do add(item.rank..": "..item.name.." — "..item.source) end
   add("PVE ENCHANT REFERENCE","GameFontNormal")
   for _,v in ipairs(Data.hunterBM.enchants or {}) do add(v.slot..": "..v.name) end
-  add("Wowhead gear planner: "..tostring(Data.links and Data.links.HUNTER or "not indexed"))
+ elseif p then
+  add("No verified item-by-item list is available for this profile yet. The stat priority above is a starting point, not a BiS claim.")
  end
  add("EQUIPPED GEAR","GameFontNormal"); local gear=G:Equipped(); for _,item in ipairs(gear) do add(item) end
  if #gear==0 then add("No equipped items could be read.") end
