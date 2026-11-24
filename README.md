@@ -73,4 +73,4 @@ Added sourced item-by-item profiles for:
 - Holy Priest healer
 - Assassination Rogue dagger build
 
-The Arms Warrior PvP and Shadow Priest PvP entries remain explicitly marked as incomplete where the available sources do not provide a sufficiently verified, complete set that can safely be represented as a single recommended loadout. The addon avoids inventing missing item sources or treating unreleased items as obtainable.
+Arms Warrior PvP now has a conservative Horde baseline using known-source items; it remains marked partial because unknown-source and unreleased items are excluded. Shadow Priest PvP remains explicitly incomplete because the dedicated source's PvP gear section is not yet a complete verified obtainable loadout. The addon avoids inventing missing item sources or treating unreleased items as obtainable.
