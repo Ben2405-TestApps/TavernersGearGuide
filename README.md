@@ -63,3 +63,14 @@ Interface target 16001. Live-client API testing is still required.
 - Use `/tgear wish <item>` to add a target and `/tgear remove <number>` to remove an entry.
 - Gear Guide preferences register with TavernersCore and appear in `/tsettings`.
 - Wishlist entries are personal SavedVariables; they do not imply ownership or automatic upgrade scoring.
+
+
+## Expanded Phase 1 gear profiles (0.6.0)
+
+Added sourced item-by-item profiles for:
+- Holy Paladin healer
+- Protection Paladin tank (source-ranked defensive and offensive options; not one universal set)
+- Holy Priest healer
+- Assassination Rogue dagger build
+
+The Arms Warrior PvP and Shadow Priest PvP entries remain explicitly marked as incomplete where the available sources do not provide a sufficiently verified, complete set that can safely be represented as a single recommended loadout. The addon avoids inventing missing item sources or treating unreleased items as obtainable.
