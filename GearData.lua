@@ -1,0 +1,52 @@
+-- Curated WoW Forever gearing data. Sources are retained per profile.
+local ADDON, ns = ...
+ns = ns or {}
+ns.GearData = {
+  hunterBM = {
+    source = "https://www.wowhead.com/forever/guide/classes/hunter/beast-mastery/bis-gear",
+    updated = "2026-11-23",
+    title = "Beast Mastery Hunter — Phase 1 Pre-Raid",
+    note = "Wowhead's guide is evolving. Raid tier pieces are compared by set bonus; keep 8% hit chance in mind when substituting pieces. Not a PvP-only set.",
+    priorities = {"Agility", "Hit rating to 8% cap", "Critical Strike", "Attack Power", "Stamina for PvP survivability"},
+    ranged = {
+      {rank="BiS — AoE / Multi-Shot",name="Bloodseeker",source="Alterac Valley quest"},
+      {rank="BiS — single target",name="Eaglehorn Long Bow",source="Drop"},
+      {rank="Great — single target",name="Hawkeye Bow of Agility",source="Drop"},
+      {rank="Good",name="Dwarven Hand Cannon",source="Drop"},
+      {rank="Alternative",name="Riphook",source="Shadow Hunter Vosh'gajin, Lower Blackrock Spire"},
+      {rank="Alternative",name="Ancient Bone Bow",source="Scholomance zone drop"},
+    },
+    items = {
+      {slot="Head",rank="BiS",name="Black Dragonscale Helm",source="Leatherworking"},
+      {slot="Head",rank="Alternative",name="Backwood Helm",source="Dire Maul quest"},
+      {slot="Shoulders",rank="BiS",name="Darkspear Epaulets",source="Darkspear Raiders — Exalted"},
+      {slot="Shoulders",rank="BiS",name="Theramore Epaulets",source="Theramore Expeditionary Force — Exalted"},
+      {slot="Back",rank="BiS",name="Cape of the Black Baron",source="Baron Rivendare, Stratholme"},
+      {slot="Chest",rank="BiS",name="Dawn Armor",source="Leatherworking"},
+      {slot="Chest",rank="Alternative",name="Beastmaster's Tunic",source="Saving the Best for Last quest"},
+      {slot="Wrist",rank="BiS",name="Beastmaster's Bindings",source="Quest"},
+      {slot="Hands",rank="BiS",name="Devilsaur Gauntlets",source="Leatherworking; pair with Devilsaur Leggings for 2% hit"},
+      {slot="Waist",rank="BiS",name="Marksman's Girdle",source="Urok Doomhowl, Lower Blackrock Spire"},
+      {slot="Legs",rank="BiS",name="Devilsaur Leggings",source="Leatherworking; pair with Devilsaur Gauntlets for 2% hit"},
+      {slot="Feet",rank="BiS",name="Beastmaster's Treads",source="Quest; pet damage effect"},
+      {slot="Neck",rank="BiS",name="Pendant of Celerity",source="Lord Valthalak, Lower Blackrock Spire"},
+      {slot="Ring",rank="BiS",name="Cutthroat's Signet",source="Pix Xizzix, Stranglethorn Vale"},
+      {slot="Ring",rank="BiS",name="Tarnished Elven Ring",source="Dire Maul zone drop"},
+      {slot="Trinket",rank="BiS",name="Blackhand's Breadth",source="Lower Blackrock Spire quest"},
+      {slot="Trinket",rank="BiS",name="Heart of Wyrmthalak",source="Overlord Wyrmthalak, Lower Blackrock Spire"},
+      {slot="Two-Hand",rank="BiS",name="Legionite Glaive",source="Blacksmithing"},
+      {slot="Two-Hand",rank="Great",name="Beastslayer's Trident",source="Mapping the Way Forward (Alliance) / The Dark Crystal (Horde)"},
+    },
+  },
+  links = {
+    HUNTER="https://www.wowhead.com/forever/gear-planner/hunter",
+    WARRIOR="https://www.wowhead.com/forever/gear-planner/warrior",
+    PALADIN="https://www.wowhead.com/forever/gear-planner/paladin",
+    ROGUE="https://www.wowhead.com/forever/gear-planner/rogue",
+    PRIEST="https://www.wowhead.com/forever/gear-planner/priest",
+    MAGE="https://www.wowhead.com/forever/gear-planner/mage",
+    WARLOCK="https://www.wowhead.com/forever/gear-planner/warlock",
+    DRUID="https://www.wowhead.com/forever/gear-planner/druid",
+    SHAMAN="https://www.wowhead.com/forever/gear-planner/shaman",
+  },
+}
