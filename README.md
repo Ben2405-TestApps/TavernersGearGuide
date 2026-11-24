@@ -55,3 +55,11 @@ Install TavernersCore, then place this folder in `Interface/AddOns/TavernersGear
 The BM list is a PvE pre-raid reference, not a dedicated PvP set. Wowhead notes the guide is evolving and distinguishes AoE from single-target ranged weapons. This is broader coverage, not a claim that every specialization has a complete verified BiS list. Many new profiles are intentionally partial because their Forever guides are still evolving, speculative, or missing slots. Assassination Rogue and Holy/Discipline Priest currently have no complete slot-by-slot list in this addon. Arms Warrior PvP, Holy/Protection Paladin and Shadow Priest PvP are explicitly guidance-only until a suitable Forever-specific set is verified. Open the linked source before committing to a long farm. The BM Hunter PvP set is labelled predicted/work-in-progress and not yet tested in game by its source. It now includes situational damage, survival, control and mobility trinket options. Do not treat generic priorities as a substitute for a spec-specific, current gear set.
 
 Interface target 16001. Live-client API testing is still required.
+
+
+## Gear wishlist and shared settings (0.5.0)
+
+- Added a persistent gear wishlist.
+- Use `/tgear wish <item>` to add a target and `/tgear remove <number>` to remove an entry.
+- Gear Guide preferences register with TavernersCore and appear in `/tsettings`.
+- Wishlist entries are personal SavedVariables; they do not imply ownership or automatic upgrade scoring.
