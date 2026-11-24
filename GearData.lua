@@ -316,10 +316,10 @@ ns.GearData = {
       },
     },
     ["PRIEST|Holy / Discipline"] = {
-      title="Holy Priest — Phase 1 Pre-Raid Healer Set",
+      title="Holy Priest — Phase 1 Pre-Raid Healer Set (Holy only)",
       source="https://www.wowhead.com/forever/guide/classes/priest/holy/bis-gear",
       updated="2026-11-17", partial=false,
-      note="Wowhead Phase 1 Holy Priest gear planner. Healing Power is the primary throughput stat; Intellect supports mana and spell crit, Spirit supports recovery and Spiritual Guidance, and MP5 helps long encounters.",
+      note="Wowhead Phase 1 Holy Priest gear planner only; do not treat this as a Discipline-specific BiS set. Healing Power is the primary throughput stat; Intellect supports mana and spell crit, Spirit supports recovery and Spiritual Guidance, and MP5 helps long encounters.",
       priorities={"Healing Power / Spell Power","Intellect","Mana per 5 sec","Spirit","Spell Critical Strike"},
       items={
         {slot="Head",rank="BiS",name="Bad Hat",source="Quest, Azshara"},
