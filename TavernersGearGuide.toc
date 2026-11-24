@@ -1,0 +1,8 @@
+## Interface: 16001
+## Title: Taverners Gear Guide
+## Notes: Class-aware gearing priorities and equipment reference.
+## Author: The Taverners Guild
+## Version: 0.1.0
+## Dependencies: TavernersCore
+## SavedVariables: TavernersGearGuideDB
+GearGuide.lua
