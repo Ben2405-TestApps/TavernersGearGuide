@@ -2,7 +2,8 @@ local ADDON,ns=...
 local Core=_G.TavernersCore
 if not Core then return end
 local Data=ns and ns.GearData or {}
-local DB=Core.Database:Register("TavernersGearGuideDB",{version=2,profileIndex=1},2)
+local DB=Core.Database:Register("TavernersGearGuideDB",{version=3,profileIndex=1,wishlist={}},3)
+Core.Settings:Register("GearGuide", DB, {profileIndex={label="Selected class profile",type="number",default=1,min=1,max=30,step=1}})
 local Profiles={
  WARRIOR={{"Arms PvP","Melee / PvP","Weapon damage > Strength > Stamina > Critical Strike"},{"Fury PvE","Melee / PvE","Weapon skill where relevant > Hit > Strength > Critical Strike"},{"Protection","Tank","Stamina > Defense > Armor > Strength > Hit"},{"Arms PvE Phase 1","Melee / PvE","Hit / weapon skill > Strength > Critical Strike; use encounter-specific effects where relevant"}},
  PALADIN={{"Holy","Healer","Healing power > Intellect > Mana per 5 > Spirit > Stamina"},{"Retribution","Melee / PvP","Weapon damage > Hit to melee cap (about 8%, weapon-skill dependent) > Expertise > Strength > Critical Strike; PvP adds Stamina and control"},{"Protection","Tank","Stamina > Defense > Armor > Spell power / threat"}},
@@ -19,6 +20,22 @@ function G:Class() local _,c=UnitClass("player"); return c or "WARRIOR" end
 function G:Profile() local list=Profiles[self:Class()] or {}; if #list==0 then return nil end; if DB.profileIndex>#list then DB.profileIndex=1 end; return list[DB.profileIndex],#list end
 function G:Next() local list=Profiles[self:Class()] or {}; if #list>0 then DB.profileIndex=DB.profileIndex%#list+1 end; if self.UI then self.UI:Refresh() end end
 function G:Equipped() local out={}; for slot=1,19 do local link=GetInventoryItemLink("player",slot); if link then out[#out+1]=GetItemInfo(link) or link end end; return out end
+function G:AddWishlist(item)
+ if type(item)~="string" or item=="" then return false end
+ DB.wishlist=DB.wishlist or {}
+ DB.wishlist[#DB.wishlist+1]={name=Core.Util:SafeText(item),created=Core.Util:Now(),character=UnitName("player")}
+ while #DB.wishlist>50 do table.remove(DB.wishlist,1) end
+ Core.Notifications:Print("Added "..item.." to your gear wishlist.")
+ if self.UI then self.UI:Refresh() end
+ return true
+end
+function G:RemoveWishlist(index)
+ if not DB.wishlist then return false end
+ if not DB.wishlist[tonumber(index) or 0] then return false end
+ table.remove(DB.wishlist,tonumber(index))
+ if self.UI then self.UI:Refresh() end
+ return true
+end
 function G:GetDashboardSummary() local p=self:Profile(); return p and p[1] or "No class profile" end
 Core:RegisterModule("GearGuide",G)
 local frame,content
@@ -126,7 +143,10 @@ local function refresh()
  elseif p then
   add("No verified item-by-item list is available for this profile yet. The stat priority above is a starting point, not a BiS claim.")
  end
- add("EQUIPPED GEAR","GameFontNormal"); local gear=G:Equipped(); for _,item in ipairs(gear) do add(item) end
+ add("GEAR WISHLIST","GameFontNormal")
+  for i,item in ipairs(DB.wishlist or {}) do add(i..". "..tostring(item.name).." — "..tostring(item.character or "Unknown")) end
+  if #(DB.wishlist or {})==0 then add("No saved gear targets. Use /tgear wish <item> to add one.","GameFontHighlightSmall") end
+  add("EQUIPPED GEAR","GameFontNormal"); local gear=G:Equipped(); for _,item in ipairs(gear) do add(item) end
  if #gear==0 then add("No equipped items could be read.") end
  add("Use ranks as a guide, not an automatic score. Check special effects, hit cap, set bonuses and your PvP requirements.")
  content:SetHeight(math.max(1,-y+20))
@@ -146,4 +166,4 @@ end
 G.UI={Toggle=function() build(); if frame:IsShown() then frame:Hide() else frame:Show(); refresh() end end,Refresh=refresh}
 local ev=CreateFrame("Frame"); ev:RegisterEvent("PLAYER_LOGIN"); ev:SetScript("OnEvent",function() build(); refresh() end)
 SLASH_TAVERNERSGEARGUIDE1="/tgear"; SLASH_TAVERNERSGEARGUIDE2="/tgg"; SlashCmdList=SlashCmdList or {}
-SlashCmdList.TAVERNERSGEARGUIDE=function() G.UI:Toggle() end
+SlashCmdList.TAVERNERSGEARGUIDE=function(msg) local command,item=tostring(msg or ""):match("^(%S+)%s*(.-)$"); if command=="wish" and item and item~="" then G:AddWishlist(item) elseif command=="remove" then G:RemoveWishlist(item) else G.UI:Toggle() end end
