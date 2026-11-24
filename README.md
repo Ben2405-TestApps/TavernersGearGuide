@@ -34,6 +34,6 @@ Install TavernersCore, then place this folder in `Interface/AddOns/TavernersGear
 - [Wowhead Forever — Retribution Paladin stat guide](https://www.wowhead.com/forever/guide/classes/paladin/retribution/stat-priority-pve-dps)
 - [Wowhead Forever Gear Planner](https://www.wowhead.com/forever/gear-planner)
 
-The BM list is a PvE pre-raid reference, not a dedicated PvP set. Wowhead notes the guide is evolving and distinguishes AoE from single-target ranged weapons. The current database is a first pass, not complete coverage of every spec. Elemental Shaman and Affliction Warlock are explicitly partial; the remaining specs still need item-by-item research. The BM Hunter PvP set is labelled predicted/work-in-progress by its source, and its trinkets are not yet published. Do not treat generic priorities as a substitute for a spec-specific, current gear set.
+The BM list is a PvE pre-raid reference, not a dedicated PvP set. Wowhead notes the guide is evolving and distinguishes AoE from single-target ranged weapons. The current database is a first pass, not complete coverage of every spec. Elemental Shaman and Affliction Warlock are explicitly partial; the remaining specs still need item-by-item research. The BM Hunter PvP set is labelled predicted/work-in-progress and not yet tested in game by its source. It now includes situational damage, survival, control and mobility trinket options. Do not treat generic priorities as a substitute for a spec-specific, current gear set.
 
 Interface target 16001. Live-client API testing is still required.
