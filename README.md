@@ -17,8 +17,12 @@ Install TavernersCore, then place this folder in `Interface/AddOns/TavernersGear
 - [Wowhead Forever — BM Hunter stat priority](https://www.wowhead.com/forever/guide/classes/hunter/beast-mastery/stat-priority-pve-dps)
 - [Wowhead Forever — BM Hunter enchants and consumables](https://www.wowhead.com/forever/guide/classes/hunter/beast-mastery/enchants-consumables-pve-dps)
 - [Wowhead Forever — BM Hunter overview and pet changes](https://www.wowhead.com/forever/guide/classes/hunter/beast-mastery/overview-pve-dps)
+- [Wowhead Forever — Elemental Shaman stat priority](https://www.wowhead.com/forever/guide/classes/shaman/elemental/stat-priority-pve-dps)
+- [Wowhead Forever — Affliction Warlock stat priority](https://www.wowhead.com/forever/guide/classes/warlock/affliction/stat-priority-pve-dps)
+- [Wowhead Forever — Holy Priest stat priority](https://www.wowhead.com/forever/guide/classes/priest/holy/stat-priority-pve-healer)
+- [Wowhead Forever — Retribution Paladin stat guide](https://www.wowhead.com/forever/guide/classes/paladin/retribution/stat-priority-pve-dps)
 - [Wowhead Forever Gear Planner](https://www.wowhead.com/forever/gear-planner)
 
-The BM list is a PvE pre-raid reference, not a dedicated PvP set. Wowhead notes the guide is evolving and distinguishes AoE from single-target ranged weapons. Other class profiles currently provide qualitative priorities and Wowhead planner links; item-by-item class lists will be added as verified data packs.
+The BM list is a PvE pre-raid reference, not a dedicated PvP set. Wowhead notes the guide is evolving and distinguishes AoE from single-target ranged weapons. Other class profiles provide class/spec starting priorities and planner links. Elemental Shaman, Affliction Warlock, Holy Priest and Retribution Paladin now include direct Wowhead class-guide references; their item-by-item BiS lists are not yet complete. Do not treat generic priorities as a substitute for a spec-specific, current gear set.
 
 Interface target 16001. Live-client API testing is still required.
