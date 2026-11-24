@@ -107,6 +107,34 @@ ns.GearData = {
         {slot="Ranged",name="Sniper Scope"},
       },
     },
+    ["WARRIOR|Arms PvP"] = {
+      title="Arms Warrior — PvP Gear Guidance",
+      source="https://www.wowhead.com/forever/guide/classes/warrior/arms/bis-gear",
+      updated="2026-11-24", partial=true,
+      note="The linked Forever guide is a PvE Phase 1 reference, not a dedicated PvP set. No complete verified Arms PvP item-by-item set is published in this addon yet. Prioritise weapon pressure, Stamina and useful hit/crit without sacrificing survivability.",
+      items={},
+    },
+    ["PALADIN|Holy"] = {
+      title="Holy Paladin — Healer Gear Guidance",
+      source="https://www.wowhead.com/forever/guide/classes/paladin/holy/stat-priority-pve-healer",
+      updated="2026-11-24", partial=true,
+      note="Stat-priority reference only. A verified Forever Phase 1 Holy Paladin item-by-item list has not yet been added; do not use Retribution gear as a healer set.",
+      items={},
+    },
+    ["PALADIN|Protection"] = {
+      title="Protection Paladin — Tank Gear Guidance",
+      source="https://www.wowhead.com/forever/guide/classes/paladin/protection/stat-priority-pve-tank",
+      updated="2026-11-24", partial=true,
+      note="Stat-priority reference only. A verified Forever Phase 1 Protection Paladin item-by-item list has not yet been added; choose defensive and threat pieces for your encounter rather than copying Retribution gear.",
+      items={},
+    },
+    ["PRIEST|Shadow PvP"] = {
+      title="Shadow Priest — PvP Gear Guidance",
+      source="https://www.wowhead.com/forever/guide/classes/priest/shadow/bis-gear",
+      updated="2026-11-24", partial=true,
+      note="The linked guide is a Phase 1 PvE reference, not a dedicated PvP set. No verified Shadow Priest PvP item-by-item set is included yet; prioritise spell pressure, Stamina and control for battlegrounds.",
+      items={},
+    },
     ["PALADIN|Retribution"] = {
       title="Retribution Paladin — Phase 1 Pre-Raid",
       source="https://www.wowhead.com/forever/guide/classes/paladin/retribution/bis-gear",
@@ -190,10 +218,8 @@ ns.GearData = {
       source="https://www.wowhead.com/forever/guide/classes/rogue/assassination/bis-gear",
       updated="2026-11-14", partial=true,
       note="The current guide explicitly labels the pre-raid list speculative and leaves many slots undiscovered. The beta raid set bonuses are placeholders and may change.",
-      items={
-        {slot="Head",rank="Not yet confirmed",name="No verified item yet",source="Guide slot table incomplete"},
-        {slot="Shoulders",rank="Not yet confirmed",name="No verified item yet",source="Guide slot table incomplete"},
-      },
+      items={},
+
     },
     ["ROGUE|Subtlety PvP"] = {
       title="Subtlety Rogue — Phase 1 Gear Reference",
