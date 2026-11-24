@@ -5,8 +5,9 @@ Class-aware gearing reference for WoW Forever.
 ## Features
 - Class/spec profile selector with PvP, PvE, tank, healer and melee/ranged starting priorities.
 - Reads currently equipped gear.
-- Item-by-item Phase 1 sets for BM Hunter PvE and PvP, Arms Warrior, Combat Rogue, Shadow Priest, Arcane Mage, Feral Druid, Elemental Shaman and Affliction Warlock.
-- Each set carries a source URL, last-reviewed date, slot, item rank and acquisition source; partial or evolving sets are labelled.
+- Item-by-item references now cover BM Hunter PvE/PvP, Marksmanship and Survival Hunter, Arms/Fury/Protection Warrior, Retribution Paladin, Combat/Assassination/Subtlety Rogue, Shadow and Holy/Disclipline Priest, Arcane/Fire/Frost Mage, Balance/Feral DPS/Feral Tank/Restoration Druid, Elemental/Enhancement/Restoration Shaman, and Affliction/Demonology/Destruction Warlock.
+- Each set carries a source URL, last-reviewed date, slot, item rank and acquisition source; partial, speculative and evolving guides are explicitly labelled.
+- Equipped-versus-recommended slot check compares the names in your current gear against the profile's recommended targets. It is a checklist, not a stat simulator or automatic upgrade score.
 - Displays Wowhead's BM PvE stat order, pet inheritance details and recommended PvE enchants.
 - Separates PvP guidance from the PvE 8% raid-boss hit benchmark; does not pretend that the PvE BiS list is a PvP set.
 - Registers with TavernersCore for the Guild Hall dashboard.
