@@ -51,6 +51,13 @@ ns.GearData = {
       {slot="Two-Hand",rank="Great",name="Beastslayer's Trident",source="Mapping the Way Forward (Alliance) / The Dark Crystal (Horde)"},
     },
   },
+  classGuideSources = {
+    SHAMAN = "https://www.wowhead.com/forever/guide/classes/shaman/elemental/stat-priority-pve-dps",
+    WARLOCK = "https://www.wowhead.com/forever/guide/classes/warlock/affliction/stat-priority-pve-dps",
+    PRIEST = "https://www.wowhead.com/forever/guide/classes/priest/holy/stat-priority-pve-healer",
+    PALADIN = "https://www.wowhead.com/forever/guide/classes/paladin/retribution/stat-priority-pve-dps",
+  },
+  dataStatus = "Only Beast Mastery Hunter currently has a sourced item-by-item Phase 1 pre-raid list. Other class/spec entries are stat-priority starting points and should not be treated as complete BiS lists.",
   links = {
     HUNTER="https://www.wowhead.com/forever/gear-planner/hunter",
     WARRIOR="https://www.wowhead.com/forever/gear-planner/warrior",
