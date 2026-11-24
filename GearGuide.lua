@@ -23,6 +23,49 @@ function G:GetDashboardSummary() local p=self:Profile(); return p and p[1] or "N
 Core:RegisterModule("GearGuide",G)
 local frame,content
 local function text(parent,t,y,font) local fs=parent:CreateFontString(nil,"OVERLAY",font or "GameFontHighlight"); fs:SetPoint("TOPLEFT",8,y); fs:SetWidth(630); fs:SetJustifyH("LEFT"); fs:SetWordWrap(true); fs:SetText(t); return fs end
+local SlotMap={
+ Head={1}, Neck={2}, Shoulders={3}, Back={15}, Chest={5}, Wrist={9}, Hands={10},
+ Waist={6}, Legs={7}, Feet={8}, Ring={11,12}, Trinket={13,14},
+ ["Main Hand"]={16}, ["Off Hand"]={17}, Shield={17}, ["Two-Hand"]={16},
+ Ranged={18}, Relic={18}
+}
+local function itemName(slot)
+ local link=GetInventoryItemLink and GetInventoryItemLink("player",slot)
+ if not link then return "Empty" end
+ return (GetItemInfo and GetItemInfo(link)) or link
+end
+local function addUpgradeCheck(add,profile)
+ add("EQUIPPED VS RECOMMENDED — SLOT CHECK","GameFontNormal")
+ add("This is a named-item comparison, not a stat simulation. Check item effects, set bonuses, hit caps and PvP needs before replacing anything.","GameFontHighlightSmall")
+ local grouped={}
+ for _,item in ipairs(profile.items or {}) do
+  local slot=item.slot
+  if slot and item.name and item.name~="No verified item yet" then
+   grouped[slot]=grouped[slot] or {}
+   grouped[slot][#grouped[slot]+1]=item
+  end
+ end
+ local order={"Head","Neck","Shoulders","Back","Chest","Wrist","Hands","Waist","Legs","Feet","Ring","Trinket","Main Hand","Off Hand","Shield","Two-Hand","Ranged","Relic"}
+ for _,slotName in ipairs(order) do
+  local picks=grouped[slotName]
+  local slots=SlotMap[slotName]
+  if picks and slots then
+   local targets={}
+   for _,candidate in ipairs(picks) do
+    if tostring(candidate.rank or ""):find("BiS",1,true) then targets[#targets+1]=candidate end
+   end
+   if #targets==0 then targets[1]=picks[1] end
+   for i,invSlot in ipairs(slots) do
+    local target=targets[math.min(i,#targets)]
+    if target then
+     local current=itemName(invSlot)
+     local status=(current:lower()==target.name:lower()) and "Already equipped" or "Target"
+     add(slotName.." — "..current.."  →  "..target.name.." ["..status.."]","GameFontHighlight")
+    end
+   end
+  end
+ end
+end
 local function refresh()
  if not content then return end
  for _,v in ipairs(content.rows or {}) do v:Hide(); v:SetParent(nil) end; content.rows={}; local y=-5
@@ -41,6 +84,7 @@ local function refresh()
   add(gearProfile.title or "ITEM-BY-ITEM GEAR REFERENCE","GameFontNormal")
   add("Source updated: "..tostring(gearProfile.updated or "not dated").." • "..tostring(gearProfile.source or "source not recorded"),"GameFontHighlightSmall")
   if gearProfile.note then add(gearProfile.note) end
+  if gearProfile.partial then add("COVERAGE: PARTIAL — see the linked source for unlisted slots and latest updates.","GameFontHighlightSmall") end
   if gearProfile.summary then add(gearProfile.summary,"GameFontHighlight") end
   add("SLOT-BY-SLOT RECOMMENDATIONS","GameFontNormal")
   for _,item in ipairs(gearProfile.items or {}) do
@@ -54,6 +98,7 @@ local function refresh()
     add("Source: "..item.source,"GameFontHighlightSmall")
    end
   end
+  addUpgradeCheck(add,gearProfile)
   if gearProfile.enchants and #gearProfile.enchants>0 then
    add("RECOMMENDED ENCHANTS","GameFontNormal")
    for _,v in ipairs(gearProfile.enchants) do add(v.slot..": "..v.name) end
